@@ -3,3 +3,7 @@
 # Features
 
 Added Gui.
+
+# Known Issues
+
+Windows defender may cause some issues so disable it before downloading.
