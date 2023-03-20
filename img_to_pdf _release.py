@@ -15,7 +15,7 @@ root.geometry("300x140")
 # Define a function to convert the selected images to PDF
 def convert_to_pdf():
     # Ask the user to select the input images
-    dn_label.config(text="Select images to convert")
+    label.config(text="Select images to convert")
     filetypes = (("PNG files", "*.png"), ("JPEG files", "*.jpg"))
     input_images = filedialog.askopenfilenames(filetypes=filetypes)
     if not input_images:
@@ -38,7 +38,7 @@ def convert_to_pdf():
         if image.mode == "RGBA":
             image = image.convert("RGB")
         
-        dn_label.config(text="Configuring Images")
+        label.config(text="Configuring Images")
         global temp_pdf
         # Create a temporary PDF file for the current image
         temp_pdf = os.path.splitext(input_image)[0] + ".pdf"
@@ -57,7 +57,7 @@ def convert_to_pdf():
 
     # Delete the temporary PDF file
     os.remove(temp_pdf)
-    dn_label.config(text="Pdf file saved")
+    label.config(text="Pdf file saved")
 
 def callback():
     webbrowser.open("https://github.com/entpnrusman/")
@@ -65,8 +65,8 @@ def callback():
 convert_button = Button(root, text="Select images to convert", command=convert_to_pdf)
 convert_button.pack(pady=10)
 
-dn_label = Label(root, text="Select images to convert")
-dn_label.pack(pady=10)
+label = Label(root, text="Select images to convert")
+label.pack(pady=10)
 
 github_link = Button(root, text="github.com/entpnrusman", command=callback)
 github_link.pack(pady=10)
