@@ -54,9 +54,11 @@ def convert_to_pdf():
         pdf_merger.write(f)
     # Close the PDF merger object
     pdf_merger.close()
-
+    for input_image in input_images:
+        os.remove(os.path.splitext(input_image)[0]+'.pdf')
+        print(os.path.splitext(input_image)[0]+ '   ---removed---')
     # Delete the temporary PDF file
-    os.remove(temp_pdf)
+    #os.remove(temp_pdf)
     label.config(text="Pdf file saved")
 
 def callback():
