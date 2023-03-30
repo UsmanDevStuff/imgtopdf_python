@@ -1,21 +1,23 @@
 import os
-import time
 from tkinter import *
 from tkinter import filedialog
+import customtkinter as ctk
 import webbrowser
 from PIL import Image
 from PyPDF2 import PdfMerger
 
 # Create the Tkinter GUI window
-root = Tk()
+root = ctk.CTk()
 root.title("Image to PDF Converter")
 root.geometry("300x140")
+ctk.set_appearance_mode("System")  # Modes: system (default), light, dark
+ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
 
 # Define a function to convert the selected images to PDF
 # Define a function to convert the selected images to PDF
 def convert_to_pdf():
     # Ask the user to select the input images
-    label.config(text="Select images to convert")
+    label.configure(text="Select images to convert")
     filetypes = (("PNG files", "*.png"), ("JPEG files", "*.jpg"))
     input_images = filedialog.askopenfilenames(filetypes=filetypes)
     if not input_images:
@@ -38,7 +40,7 @@ def convert_to_pdf():
         if image.mode == "RGBA":
             image = image.convert("RGB")
         
-        label.config(text="Configuring Images")
+        label.configure(text="Configuring Images")
         global temp_pdf
         # Create a temporary PDF file for the current image
         temp_pdf = os.path.splitext(input_image)[0] + ".pdf"
@@ -59,18 +61,18 @@ def convert_to_pdf():
         print(os.path.splitext(input_image)[0]+ '   ---removed---')
     # Delete the temporary PDF file
     #os.remove(temp_pdf)
-    label.config(text="Pdf file saved")
+    label.configure(text="Pdf file saved")
 
 def callback():
     webbrowser.open("https://github.com/entpnrusman/")
 # Add a button to trigger the conversion
-convert_button = Button(root, text="Select images to convert", command=convert_to_pdf)
+convert_button = ctk.CTkButton(root, text="Select images to convert", command=convert_to_pdf)
 convert_button.pack(pady=10)
 
-label = Label(root, text="Select images to convert")
+label = ctk.CTkLabel(root, text="Select images to convert")
 label.pack(pady=10)
 
-github_link = Button(root, text="github.com/entpnrusman", command=callback)
+github_link = ctk.CTkButton(root, text="github.com/entpnrusman", command=callback)
 github_link.pack(pady=10)
 # Start the Tkinter main event loop
 root.mainloop()
